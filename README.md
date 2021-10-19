@@ -7,7 +7,7 @@
   
   ## Description 
   
-  This project is a simple minesweeper game. Minesweeper is a board game in which the objective is to clear a rectangular board containing hidden "mines" (or bombs) and reveal all the cells that do not contain a mine. It is written in Javascript ulitlizing the React JS library. 
+  This project is a simple minesweeper game. Minesweeper is a board game in which the objective is to clear a rectangular board containing hidden "mines" (or bombs) and reveal all the cells that do not contain a mine. It is written in Javascript utilizing the React JS library. 
 
   ## Table of Contents
   * [Installation](#installation)
