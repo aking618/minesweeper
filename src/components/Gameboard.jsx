@@ -7,52 +7,57 @@ const Gameboard = (props) => {
   const [tiles, setTiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    console.log("Rows: " + rows);
-    console.log("Columns: " + columns);
-    console.log("Difficulty: " + difficulty);
+  useEffect(
+    () => {
+      console.log("Rows: " + rows);
+      console.log("Columns: " + columns);
+      console.log("Difficulty: " + difficulty);
 
-    if (!loading) {
-      return;
-    }
+      if (!loading) {
+        return;
+      }
 
-    var tiles = [];
-    while (getTotalMineCount(tiles) === 0) {
-      tiles = [];
-      for (let row = 0; row < rows; row++) {
-        for (let column = 0; column < columns; column++) {
-          tiles.push({
-            row: row,
-            column: column,
-            value: generateTileValue(),
-            isRevealed: false,
-            isFlagged: false,
-            color: "blue",
-          });
+      var tiles = [];
+      while (getTotalMineCount(tiles) === 0) {
+        tiles = [];
+        for (let row = 0; row < rows; row++) {
+          for (let column = 0; column < columns; column++) {
+            tiles.push({
+              row: row,
+              column: column,
+              value: generateTileValue(),
+              isRevealed: false,
+              isFlagged: false,
+              color: "blue",
+            });
+          }
         }
       }
-    }
 
-    setTiles((oldTiles) => [...oldTiles, ...tiles]);
-    setLoading(false);
-  }, []);
+      setTiles((oldTiles) => [...oldTiles, ...tiles]);
+      setLoading(false);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const generateTileValue = () => {
+    var mineLikelyhood = 0.1;
     switch (difficulty) {
       case "easy":
-        var mineLikelyhood = Math.floor(Math.random() * 7);
+        mineLikelyhood = Math.floor(Math.random() * 7);
         if (mineLikelyhood === 0) {
           return 1;
         }
         return 0;
       case "medium":
-        var mineLikelyhood = Math.floor(Math.random() * 5);
+        mineLikelyhood = Math.floor(Math.random() * 5);
         if (mineLikelyhood === 0) {
           return 1;
         }
         return 0;
       case "hard":
-        var mineLikelyhood = Math.floor(Math.random() * 3);
+        mineLikelyhood = Math.floor(Math.random() * 3);
         if (mineLikelyhood === 0) {
           return 1;
         }
@@ -132,6 +137,8 @@ const Gameboard = (props) => {
     if (getMineCount(row, column, false) > 0) {
       return;
     }
+
+    /* eslint-disable no-labels */
 
     // check top left
     tilecheck: if (row > 0 && column > 0) {
@@ -340,12 +347,6 @@ const Gameboard = (props) => {
       </Grid>
     );
   };
-
-  const getColumnSize = () => {
-    return columns;
-  };
-
-  const handleOnClick = () => {};
 
   return (
     <div style={{ textAlign: "center" }}>

@@ -33,6 +33,13 @@ const Tile = (props) => {
         setIcon(<div>Mine</div>);
         handleLose();
         break;
+      default:
+        setIcon(
+          <div>{getNumberOfSurroundingMines(tile.row, tile.column)}</div>
+        );
+        revealTile(tile.row, tile.column);
+        checkForWin();
+        break;
     }
   };
 

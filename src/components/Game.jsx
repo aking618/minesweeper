@@ -113,6 +113,7 @@ const Game = () => {
             {isGameWon ? "You Won!" : "You Lost!"}
           </p>
           <iframe
+            title="game-end-animation"
             src={
               isGameWon
                 ? "https://giphy.com/embed/6brH8dM3zeMyA"
